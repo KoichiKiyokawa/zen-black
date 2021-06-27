@@ -1,38 +1,54 @@
 <html>
-<head>
-  <style>
-    body {
-      background-color: black;
-    }
-
-    #timer {
-      position: absolute;
-      bottom: 10px;
-      right: 10px;
-      color: white;
-      cursor: pointer;
-    }
-  </style>
-</head>
-
-<body>
-  <span id="timer"></span>
-  <script>
-    (function() {
-      var timer = document.getElementById('timer');
-      setInterval(function() {
-        var now = new Date();
-        timer.innerText = zeroPadding(now.getHours()) + ':' + zeroPadding(now.getMinutes()) + ':' + zeroPadding(now.getSeconds());
-      }, 1000);
-      timer.addEventListener('click', function() {
-        timer.style.color = timer.style.color === 'black' ? 'white' : 'black';
-      });
-
-      function zeroPadding(num) {
-        return ('0' + num).slice(-2)
+  <head>
+    <style>
+      body {
+        background-color: black;
       }
-    })();
-  </script>
-</body>
+      #timer,
+      #full-screen {
+        position: absolute;
+        color: white;
+        cursor: pointer;
+        bottom: 10px;
+      }
+      #timer {
+        right: 10px;
+      }
+      #full-screen {
+        left: 10px;
+      }
+    </style>
+  </head>
 
+  <body>
+    <span role="button" id="timer"></span>
+    <span role="button" id="full-screen">full screen</span>
+    <script>
+      (function () {
+        var timer = document.getElementById("timer");
+        setInterval(function () {
+          var now = new Date();
+          timer.innerText =
+            zeroPadding(now.getHours()) + ":" + zeroPadding(now.getMinutes()) + ":" + zeroPadding(now.getSeconds());
+        }, 1000);
+        timer.addEventListener("click", function () {
+          timer.style.color = timer.style.color === "black" ? "white" : "black";
+        });
+
+        function zeroPadding(num) {
+          return ("0" + num).slice(-2);
+        }
+
+        var fullScreen = document.getElementById("full-screen");
+        fullScreen.addEventListener("click", function () {
+          if (!document.fullscreenElement) document.documentElement.requestFullscreen();
+        });
+
+        document.addEventListener("fullscreenchange", (event) => {
+          if (document.fullscreenElement) fullScreen.innerText = "";
+          else fullScreen.innerText = "full screen";
+        });
+      })();
+    </script>
+  </body>
 </html>

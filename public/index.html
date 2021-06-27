@@ -38,12 +38,12 @@
         timer.addEventListener("click", toggleTimer);
 
         var fullScreen = document.getElementById("full-screen");
-        fullScreen.addEventListener("click", requestFullscreen);
+        fullScreen.addEventListener("click", toggleFullscreen);
 
         document.addEventListener("keydown", (e) => {
           switch (e.key) {
             case "f":
-              return requestFullscreen();
+              return toggleFullscreen();
             case "t":
               return toggleTimer();
           }
@@ -58,8 +58,9 @@
         function toggleTimer() {
           timer.style.color = timer.style.color === "black" ? "white" : "black";
         }
-        function requestFullscreen() {
-          if (!document.fullscreenElement) document.documentElement.requestFullscreen();
+        function toggleFullscreen() {
+          if (document.fullscreenElement) document.exitFullscreen();
+          else document.documentElement.requestFullscreen();
         }
       })();
     </script>

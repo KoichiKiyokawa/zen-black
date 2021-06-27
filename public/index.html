@@ -1,0 +1,33 @@
+<html>
+<head>
+  <style>
+    body {
+      background-color: black;
+    }
+
+    #timer {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+  <span id="timer" ></span>
+  <script>
+    (function() {
+      var timer = document.getElementById('timer');
+      setInterval(function() {
+        var now = new Date();
+        timer.innerText = now.getHours() + ':' + now.getMinutes() + ':' + now.getSeconds();
+      }, 1000);
+      timer.addEventListener('click', function() {
+        timer.style.color = timer.style.color === 'black' ? 'white' : 'black';
+      });
+    })();
+  </script>
+</body>
+
+</html>

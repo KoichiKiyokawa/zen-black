@@ -3,6 +3,7 @@
   <style>
     body {
       background-color: black;
+      padding: 0 4px 4px 0;
     }
 
     #timer {
@@ -15,17 +16,21 @@
 </head>
 
 <body>
-  <span id="timer" ></span>
+  <span id="timer"></span>
   <script>
     (function() {
       var timer = document.getElementById('timer');
       setInterval(function() {
         var now = new Date();
-        timer.innerText = now.getHours() + ':' + now.getMinutes() + ':' + now.getSeconds();
+        timer.innerText = zeroPadding(now.getHours()) + ':' + zeroPadding(now.getMinutes()) + ':' + zeroPadding(now.getSeconds());
       }, 1000);
       timer.addEventListener('click', function() {
         timer.style.color = timer.style.color === 'black' ? 'white' : 'black';
       });
+
+      function zeroPadding(num) {
+        return ('0' + num).slice(-2)
+      }
     })();
   </script>
 </body>

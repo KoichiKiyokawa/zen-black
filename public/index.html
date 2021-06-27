@@ -50,9 +50,8 @@
               return toggleTimer();
           }
         });
-        document.addEventListener("fullscreenchange", (event) => {
-          if (document.fullscreenElement) fullScreen.innerText = "";
-          else fullScreen.innerText = "full screen";
+        document.addEventListener("fullscreenchange", () => {
+          fullScreen.innerText = document.fullscreenElement ? "" : "full screen";
         });
 
         function zeroPadding(num) {
